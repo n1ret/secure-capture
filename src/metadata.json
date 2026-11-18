@@ -1,0 +1,15 @@
+{
+  "KPlugin": {
+    "Name": "Secure Capture",
+    "Description": "Exclude non-allowlisted application windows from screen capture",
+    "Category": "Accessibility",
+    "EnabledByDefault": false,
+    "Version": "0.1.0",
+    "License": "GPL-3.0-only",
+    "Authors": [
+      {
+        "Name": "N1ret"
+      }
+    ]
+  }
+}

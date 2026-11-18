@@ -1,0 +1,16 @@
+{
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Id": "n1ret.securecapture",
+    "Name": "Secure Capture",
+    "Description": "Manage which application windows may be captured",
+    "Icon": "preferences-desktop-screensaver",
+    "License": "GPL-3.0-only",
+    "Version": "0.1.0",
+    "Category": "System Information"
+  },
+  "X-Plasma-API": "declarative",
+  "X-Plasma-NotificationAreaCategory": "ApplicationStatus",
+  "X-Plasma-NotificationArea": true,
+  "X-Plasma-API-Minimum-Version": "6.0"
+}
