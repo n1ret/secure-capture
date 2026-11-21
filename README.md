@@ -3,6 +3,8 @@
 Secure Capture helps control which application windows may be included in
 screenshots and screen recordings on KDE Plasma 6.
 
+![Preview](.github/resources/preview.png)
+
 ## Abilities
 
 - Capture protection tray icon.
