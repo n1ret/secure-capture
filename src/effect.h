@@ -54,7 +54,7 @@ private:
 
   void loadConfiguration();
   void saveConfiguration();
-  void updateState();
+  void updateState(EffectWindow *excludeWindow = nullptr);
   void applyToAllWindows();
   void applyToWindow(EffectWindow *window);
   void restoreModifiedWindows();
@@ -67,7 +67,7 @@ private:
   QString applicationIdentifier(Window *window) const;
   bool matchesPattern(const QString &value, const QString &pattern) const;
   bool isAllowlisted(Window *window) const;
-  std::optional<bool> hasActiveTrigger() const;
+  std::optional<bool> hasActiveTrigger(EffectWindow *excludeWindow = nullptr) const;
   void parseTriggers();
 
   void emitPropertiesChanged(const QVariantMap &changed);

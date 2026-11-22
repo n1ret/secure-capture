@@ -52,7 +52,7 @@ namespace KWin {
 SecureCaptureEffect::SecureCaptureEffect() {
   connect(effects, &EffectsHandler::windowAdded, this,
           &SecureCaptureEffect::windowAdded);
-  connect(effects, &EffectsHandler::windowDeleted, this,
+  connect(effects, &EffectsHandler::windowClosed, this,
           &SecureCaptureEffect::windowClosed);
 
   loadConfiguration();
@@ -241,10 +241,14 @@ void SecureCaptureEffect::parseTriggers() {
   }
 }
 
-std::optional<bool> SecureCaptureEffect::hasActiveTrigger() const {
+std::optional<bool> SecureCaptureEffect::hasActiveTrigger(EffectWindow *excludeWindow) const {
   std::optional<bool> triggerState;
 
   for (EffectWindow *effectWindow : effects->stackingOrder()) {
+    if (effectWindow == excludeWindow) {
+      continue;
+    }
+
     Window *window = effectWindow->window();
     if (!isApplicationWindow(window)) {
       continue;
@@ -265,12 +269,12 @@ std::optional<bool> SecureCaptureEffect::hasActiveTrigger() const {
   return triggerState;
 }
 
-void SecureCaptureEffect::updateState() {
+void SecureCaptureEffect::updateState(EffectWindow *excludeWindow) {
   const bool oldActive = _active;
   if (_manualDisabled) {
     _active = false;
   } else {
-    auto triggerState = hasActiveTrigger();
+    auto triggerState = hasActiveTrigger(excludeWindow);
     if (triggerState.has_value()) {
       _active = triggerState.value();
     } else {
@@ -408,7 +412,7 @@ void SecureCaptureEffect::windowClosed(EffectWindow *effectWindow) {
   if (effectWindow) {
     _preActiveCaptureState.remove(effectWindow->window());
   }
-  updateState();
+  updateState(effectWindow);
 }
 
 void SecureCaptureEffect::emitPropertiesChanged(const QVariantMap &changed) {
