@@ -241,7 +241,8 @@ void SecureCaptureEffect::parseTriggers() {
   }
 }
 
-std::optional<bool> SecureCaptureEffect::hasActiveTrigger(EffectWindow *excludeWindow) const {
+std::optional<bool>
+SecureCaptureEffect::hasActiveTrigger(EffectWindow *excludeWindow) const {
   std::optional<bool> triggerState;
 
   for (EffectWindow *effectWindow : effects->stackingOrder()) {
@@ -311,7 +312,8 @@ bool SecureCaptureEffect::isWindowProtectable(Window *window) const {
     return false;
   }
   return (_protectDesktop && window->isDesktop()) ||
-         (_protectPanels && (window->isDock() || window->isAppletPopup())) ||
+         (_protectPanels && (window->isDock() || window->isAppletPopup() ||
+                             window->isTooltip())) ||
          (_protectTabSwitcher && isTabSwitcher(window));
 }
 
