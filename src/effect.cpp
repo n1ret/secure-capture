@@ -52,7 +52,7 @@ namespace KWin {
 SecureCaptureEffect::SecureCaptureEffect() {
   connect(effects, &EffectsHandler::windowAdded, this,
           &SecureCaptureEffect::windowAdded);
-  connect(effects, &EffectsHandler::windowClosed, this,
+  connect(effects, &EffectsHandler::windowDeleted, this,
           &SecureCaptureEffect::windowClosed);
 
   loadConfiguration();
